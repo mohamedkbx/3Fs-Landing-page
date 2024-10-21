@@ -1,52 +1,49 @@
-// Select the navbar and sections
-const navList = document.getElementById("navbar__list");
-const sections = document.querySelectorAll("section");
+// Global Variables
+const navList = document.querySelector("#navbar__list");
+const allSections = document.querySelectorAll("section");
 
-// Build the nav dynamically
-sections.forEach((section, index) => {
-  const listItem = document.createElement("li");
-  const anchor = document.createElement("a");
-  anchor.classList.add("menu__link");
-  anchor.textContent = "Section " + (index + 1);
-  anchor.href = "#section" + (index + 1);
+// Event Listeners
+window.addEventListener("scroll", activeState);
 
-  // Scroll to the section smoothly when the nav link is clicked
-  anchor.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent the default anchor jump
+// create the dynamic navigation menu
+for (let i = 0; i < allSections.length; i++) {
+  const navItem = document.createElement("li");
+  const navLink = document.createElement("a");
+  navLink.classList.add("menu__link");
+  navLink.innerText = "Section " + (i + 1);
+  navLink.href = "#section" + (i + 1);
 
-    // Scroll to the corresponding section with smooth behavior
-    document.querySelector(anchor.getAttribute("href")).scrollIntoView({
-      behavior: "smooth", // Enable smooth scrolling
-      block: "start", // Scroll to the start of the section
+  navLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.querySelector(navLink.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+      block: "start",
     });
   });
 
-  listItem.appendChild(anchor);
-  navList.appendChild(listItem);
-});
-
-// Helper function to check if a section is in the viewport
-function isInViewport(section) {
-  const rect = section.getBoundingClientRect();
-  return rect.top >= 0 && rect.top <= window.innerHeight / 2;
+  navItem.appendChild(navLink);
+  navList.appendChild(navItem);
 }
 
-// Add active class to the section in the viewport
-function setActiveSection() {
-  sections.forEach((section) => {
-    const correspondingLink = navList.querySelector(`a[href="#${section.id}"]`);
-    if (isInViewport(section)) {
-      section.classList.add("active");
+// crete pure function for checking if the section has intersected or yet
+function hasIntersect(section) {
+  const intersect = section.getBoundingClientRect();
+  return intersect.top >= 0 && intersect.top <= window.innerHeight / 2;
+}
+
+// perform Active State
+function activeState() {
+  allSections.forEach((sec) => {
+    const correspondingLink = navList.querySelector(`a[href="#${sec.id}"]`);
+    if (hasIntersect(sec)) {
+      sec.classList.add("active");
       correspondingLink.classList.add("active");
     } else {
-      section.classList.remove("active");
+      sec.classList.remove("active");
       correspondingLink.classList.remove("active");
     }
   });
 }
 
-// Scroll event listener to update the active state when scrolling
-window.addEventListener("scroll", setActiveSection);
-
-// Run once on load to set the active section
-setActiveSection();
+// execute Active State
+activeState();
