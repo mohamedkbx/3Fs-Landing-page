@@ -34,19 +34,46 @@
  * Begin Main Functions
  *
  */
-
-// build the nav
+// Select the navbar and sections
 const navList = document.getElementById("navbar__list");
+const sections = document.querySelectorAll("section");
 
-for (let i = 0; i < 4; i++) {
+// Build the nav dynamically
+sections.forEach((section, index) => {
   const listItem = document.createElement("li");
   const anchor = document.createElement("a");
-  anchor.textContent = "Section " + (i + 1);
-  anchor.href = "#section" + (i + 1);
+  anchor.classList.add("menu__link");
+  anchor.textContent = "Section " + (index + 1);
+  anchor.href = "#section" + (index + 1);
   listItem.appendChild(anchor);
   navList.appendChild(listItem);
+});
+
+// Helper function to check if a section is in the viewport
+function isInViewport(section) {
+  const rect = section.getBoundingClientRect();
+  return rect.top >= 0 && rect.top <= window.innerHeight / 2;
 }
-// Add class 'active' to section when near top of viewport
+
+// Add active class to the section in the viewport
+function setActiveSection() {
+  sections.forEach((section) => {
+    const correspondingLink = navList.querySelector(`a[href="#${section.id}"]`);
+    if (isInViewport(section)) {
+      section.classList.add("active");
+      correspondingLink.classList.add("active");
+    } else {
+      section.classList.remove("active");
+      correspondingLink.classList.remove("active");
+    }
+  });
+}
+
+// Scroll event listener
+window.addEventListener("scroll", setActiveSection);
+
+// Run once on load to set the active section
+setActiveSection();
 
 // Scroll to anchor ID using scrollTO event
 
