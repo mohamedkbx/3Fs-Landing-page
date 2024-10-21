@@ -45,6 +45,18 @@ sections.forEach((section, index) => {
   anchor.classList.add("menu__link");
   anchor.textContent = "Section " + (index + 1);
   anchor.href = "#section" + (index + 1);
+
+  // Scroll to the section smoothly when the nav link is clicked
+  anchor.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default anchor jump
+
+    // Scroll to the corresponding section with smooth behavior
+    document.querySelector(anchor.getAttribute("href")).scrollIntoView({
+      behavior: "smooth", // Enable smooth scrolling
+      block: "start", // Scroll to the start of the section
+    });
+  });
+
   listItem.appendChild(anchor);
   navList.appendChild(listItem);
 });
@@ -69,7 +81,7 @@ function setActiveSection() {
   });
 }
 
-// Scroll event listener
+// Scroll event listener to update the active state when scrolling
 window.addEventListener("scroll", setActiveSection);
 
 // Run once on load to set the active section
