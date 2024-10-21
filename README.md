@@ -8,10 +8,12 @@ The goal of this project is to build a multi-section landing page and dynamicall
 
 ## Features
 
-- Dynamic navigation menu
-- Smooth scrolling to sections
-- Active state for sections and navigation items
-- Responsive design
+- **Dynamic Navigation Menu**: The navigation menu is built dynamically based on the sections available on the page.
+- **Smooth Scrolling**: Clicking on a navigation item smoothly scrolls to the corresponding section.
+- **Active Section Highlighting**: The section in the viewport is automatically highlighted, and the corresponding navigation link is updated.
+- **Responsive Design**: The layout adjusts to different screen sizes, ensuring a great experience on mobile, tablet, and desktop.
+- **Smooth Scroll with ScrollIntoView**: Implemented smooth scroll behavior when clicking navigation links, enhancing the user experience.
+- **ViewPort Detection**: Automatically detects which section is in the viewport and highlights the active state for both the section and corresponding nav link.
 
 ## Technologies Used
 
@@ -23,15 +25,5 @@ The goal of this project is to build a multi-section landing page and dynamicall
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/landing-page-project-2.git
+   git clone https://github.com/mohamedkbx/landing-page-project-2.git
    ```
-2. Open `index.html` in your web browser.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Acknowledgements
-
-- Udacity for providing the project guidelines.
-- 3Fs scholarship for the opportunity to learn and grow.
