@@ -67,6 +67,13 @@ section {
   text-align: right;
 }
 
+@media (max-width: 786px) {
+  .navbar__menu ul {
+    font-size: 15px;
+    text-align: center;
+  }
+}
+
 .navbar__menu li {
   display: inline-block;
 }
