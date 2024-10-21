@@ -78,7 +78,7 @@ section {
   display: inline-block;
 }
 
-.navbar__menu .menu__link {
+.navbar__menu .nav__link {
   display: block;
   padding: 1em;
   font-weight: bold;
@@ -86,7 +86,7 @@ section {
   color: #000;
 }
 
-.navbar__menu .menu__link:hover {
+.navbar__menu .nav__link:hover {
   background: #333;
   color: #fff;
   transition: ease 0.3s all;
@@ -97,7 +97,7 @@ section {
   transition: ease 0.3s all;
 }
 
-.menu__link.active {
+.nav__link.active {
   color: #fff;
 }
 
